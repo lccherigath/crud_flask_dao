@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	{% block css %}
+	<link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static',filename='css/jquery.dataTables.min.css') }}" rel="stylesheet">
+	{% endblock %}
+</head>
+<body>
+	
+	{% block conteudo %}
+	{% endblock %}
+	
+	{% block scripts %}
+    <script src="{{ url_for('static',filename='js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+	<script src="{{ url_for('static',filename='js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ url_for('static',filename='js/main.js') }}"></script>
+    {% endblock %}
+</body>
+</html>

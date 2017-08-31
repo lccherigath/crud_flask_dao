@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+
+{% block conteudo %}
+<div class="container-fluid">
+
+	<div class="col-md-6 col-md-offset-3">
+		<h1>Livros &emsp;<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalNew">Novo</button></h1> 
+		
+		<table id="tabela">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Livro</th>
+					<th>Ano</th>
+					<th>Ações</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<th>ID</th>
+					<th>Livro</th>
+					<th>Ano</th>
+					<th>Ações</th>
+				</tr>
+			</tfoot>					
+		</table>
+	</div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalNew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Novo Livro</h4>
+      </div>
+      <div class="modal-body">
+  	
+      	<div>
+			<form>
+				<div class="form-group">
+					<label for="nome">Nome</label>
+					<input class="form-control" type="text" name="nome" id="nomeNovo" required>
+				</div>
+				<div class="form-group">
+					<label for="ano">Ano</label>
+					<input class="form-control" type="text" name="ano" id="anoNovo" required>
+				</div>
+				<div class="checkbox">
+					<label></label>
+				</div>
+				<div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+			        <button type="reset" class="btn btn-default">Limpar</button>
+			        <button type="button" onclick='incluirItem()' data-dismiss="modal" class="btn btn-primary">Salvar</button>
+			    </div>
+			</form>
+		</div>
+
+      </div>
+		      
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Alteração de Livro</h4>
+      </div>
+      <div class="modal-body">
+  	
+      	<div>
+			<form>
+				<div class="form-group">
+					<label for="id">ID</label>
+					<input class="form-control" type="text" name="id" id="idEdit" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="nome">Nome</label>
+					<input class="form-control" type="text" name="nome" id="nomeEdit" required>
+				</div>
+				<div class="form-group">
+					<label for="ano">Ano</label>
+					<input class="form-control" type="text" name="ano" id="anoEdit" required>
+				</div>
+				<div class="checkbox">
+					<label></label>
+				</div>
+				<div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+			        <button type="reset" class="btn btn-default">Limpar</button>
+			        <button type="button" onclick='alterarItem()' class="btn btn-primary" data-dismiss="modal">Salvar</button>
+			    </div>
+			</form>
+		</div>
+
+      </div>
+		      
+    </div>
+  </div>
+</div>
+{% endblock %}
+
