@@ -1,5 +1,5 @@
 //+------------------------------------------------+
-//| Módulo:  << Inicialização javascript >>        | 
+//| Módulo:  << Inicialização javascript >>        |
 //| Desc: Gerenciamento e consulta das informações |
 //|       do CRUD.                                 |
 //| Autor: EQUIPE CODEPLAN                    	   |
@@ -17,7 +17,7 @@ function msg(data){
 
 //+------------------------------------------
 //| Método auxiliar que inicializa o DataTable
-//| parm: url 
+//| parm: url
 //+------------------------------------------
 function initDataTable(dataSet){
     dado_atual = dataSet;
@@ -32,7 +32,7 @@ function initDataTable(dataSet){
 
 //+------------------------------------------
 //| Método auxiliar que atualiza o DataTable
-//| parm: dataSet 
+//| parm: dataSet
 //+------------------------------------------
 function atualizaDataTable(dataSet){
     dataTable.clear().rows.add(dataSet).draw();
@@ -40,7 +40,7 @@ function atualizaDataTable(dataSet){
 
 //+------------------------------------------
 //| Metodo auxiliar que realiza a requisição get
-//| parm: url 
+//| parm: url
 //+------------------------------------------
 function getResponse (url, callback){
     $.get( url, function( data ) {
@@ -51,7 +51,7 @@ function getResponse (url, callback){
 
 //+------------------------------------------
 //| Metodo auxiliar que realiza a requisição get
-//| parm: url 
+//| parm: url
 //+------------------------------------------
 function carregarInformacao (url,parm){
     $.get( url, parm)
@@ -64,7 +64,7 @@ function carregarInformacao (url,parm){
 
 //+------------------------------------------
 //| Metodo auxiliar que realiza a requisição get
-//| parm: url 
+//| parm: url
 //+------------------------------------------
 function getResponse2 (url, parm, callback){
     $.get( url, parm ).done(function( data ) {
@@ -77,11 +77,11 @@ function postResponse(url, parm, callback){
     $.post( url, parm)
       .done(function( data ) {
         if (data.status) {
-            callback(parm);    
+            callback(parm);
         } else {
             alert('Erro na inserção do novo livro!');
         }
-        
+
       });
 }
 
@@ -100,7 +100,7 @@ function postResponse(url, parm, callback){
 
 
 function atualizaListagem(){
-    getResponse('http://10.73.7.87/livros', atualizaDataTable);
+    getResponse('http://127.0.0.1:5000/livros', atualizaDataTable);
 };
 
 
@@ -122,21 +122,21 @@ function formataDados(dado){
     var retorno = [];
     for (var i = 0; i < dado.length; i++) {
         var dado_novo = [];
-        //Cria dados        
+        //Cria dados
         dado_novo = [ dado[i].id ,  dado[i].nome, dado[i].ano, '<button class="btn btn-danger" onclick="excluirItem('+ dado[i].id +')">Excluir <i class="fa fa-times"></i></button> <button class="btn btn-success" data-toggle="modal" data-target="#modalEdit" onclick="editarItem('+ dado[i].id +')">Editar <i class="fa fa-pencil"></i></button>'];
         retorno.push(dado_novo);
     }
-    return retorno; 
+    return retorno;
 };
 function formataDado(dado){
 	var retorno = [];
 	for (var i = 0; i < dado.length; i++) {
 		var dado_novo = [];
-		//Cria dados 		
+		//Cria dados
 		dado_novo = [ dado[i].id ,  dado[i].nome, dado[i].ano ];
 		retorno.push(dado_novo);
 	}
-	return retorno;	
+	return retorno;
 };
 
 //+------------------------------------------
@@ -144,8 +144,8 @@ function formataDado(dado){
 //+------------------------------------------
 function excluirItem(id){
     if (confirm('Excluir livro '+id)) {
-        //getResponse2('http://10.73.7.87/delete', {'id':id}, atualizaListagem);
-        getResponse2('http://10.73.7.87/delete', {'id':id}, atualizaListagem);
+        //getResponse2('http://127.0.0.1:5000/delete', {'id':id}, atualizaListagem);
+        getResponse2('http://127.0.0.1:5000/delete', {'id':id}, atualizaListagem);
     }
 };
 
@@ -154,7 +154,7 @@ function excluirItem(id){
 //+------------------------------------------
 function editarItem(id){
     //msg('Ação de editar item ' + id);
-    carregarInformacao('http://10.73.7.87/livro',{'id':id});
+    carregarInformacao('http://127.0.0.1:5000/livro',{'id':id});
 };
 
 function alterarItem(){
@@ -165,7 +165,7 @@ function alterarItem(){
 
     dado = {'id':id, 'nome':nome, 'ano':ano};
 
-    postResponse('http://10.73.7.87/alter_livro',dado,atualizaListagem)
+    postResponse('http://127.0.0.1:5000/alter_livro',dado,atualizaListagem)
 }
 
 function incluirItem(){
@@ -175,11 +175,11 @@ function incluirItem(){
 
     dado = {'nome':nome, 'ano':ano};
 
-    postResponse('http://10.73.7.87/novo_livro',dado,atualizaListagem)
+    postResponse('http://127.0.0.1:5000/novo_livro',dado,atualizaListagem)
     //alert("inserir item = " + nome + " " + ano) ;
 
 };
 
 
 //Inicializa livros
-getResponse('http://10.73.7.87/livros', initDataTable);
+getResponse('http://127.0.0.1:5000/livros', initDataTable);
